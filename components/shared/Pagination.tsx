@@ -40,7 +40,7 @@ const StickerPagination = ({currentPage, maxPage}: StickerPaginationParams) => {
       <PaginationContent>
         {currentPage !== 1 && (
           <PaginationItem>
-            <PaginationPrevious onClick={e => setPage(currentPage-1)} href="#"/>
+            <PaginationPrevious onClick={e => setPage(Number(currentPage)-1)} href="#"/>
           </PaginationItem>
         )}
         <PaginationItem>
@@ -54,7 +54,7 @@ const StickerPagination = ({currentPage, maxPage}: StickerPaginationParams) => {
         </PaginationItem>
         {currentPage !== maxPage && (
           <PaginationItem>
-            <PaginationNext href="#"  onClick={e => setPage(currentPage + 1)}/>
+            <PaginationNext href="#"  onClick={e => setPage(Number(currentPage)+1)}/>
           </PaginationItem>
         )}
       </PaginationContent>
