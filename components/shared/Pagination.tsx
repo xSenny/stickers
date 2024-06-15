@@ -30,7 +30,7 @@ const StickerPagination = ({currentPage, maxPage}: StickerPaginationParams) => {
     newUrl = formUrlQuery({
       params: searchParams.toString(),
       key: 'page',
-      value: page
+      value: `${page}`
     })
     router.push(newUrl, {scroll: false})
   }, [page])
