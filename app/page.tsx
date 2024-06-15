@@ -29,9 +29,8 @@ const page = async ({searchParams}: SearchParamProps) => {
     userId
   })
 
-  maxPages = stickers.totalPages
+  maxPages = stickers?.totalPages || 1
 
-  console.log(stickers.data)
 
 
   return (
@@ -40,7 +39,7 @@ const page = async ({searchParams}: SearchParamProps) => {
       <div className="w-full flex justify-end pr-52">
         <Filter />
       </div>
-      <StickerCollection stickers={stickers.data}/>
+      <StickerCollection stickers={stickers?.data}/>
       <StickerPagination currentPage={page} maxPage={maxPages}/>
     </div>
   )

@@ -56,5 +56,5 @@ export type StickerCardProps = {
 }
 
 export type StickerCollectionProps = {
-  stickers: Sticker[]
+  stickers?: Sticker[]
 }
