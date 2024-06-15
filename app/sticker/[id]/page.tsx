@@ -1,3 +1,4 @@
+import { getSticker } from '@/lib/actions/sticker.actions'
 import type { Metadata, ResolvingMetadata } from 'next'
 
 type Props = {
@@ -11,13 +12,22 @@ export async function generateMetadata(
   // read route params
   const id = params.id
  
-  const sticker = getStickerB
+  const sticker = await getSticker(id)
+
   return {
-    title: product.title,
+    title: `Cel mai bun sticker pe tema: ${sticker.name}`,
     openGraph: {
-      images: ['/some-specific-page-image.jpg', ...previousImages],
+      images: [sticker.stickerUrl],
     },
   }
 }
  
-export default function Page({ params, searchParams }: Props) {}
+export default async function Page({ params }: Props) {
+  const id = params.id
+ 
+  const sticker = await getSticker(id)
+
+  return (
+    <img src={sticker.stickerUrl} alt="alt"/>
+  )
+}
