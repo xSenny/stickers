@@ -15,7 +15,7 @@ export async function generateMetadata(
  
   const sticker = await getSticker(id)
 
-  const stickerUrl = sticker ? sticker.stickerUrl : '/assets/illustrations/not-found.svg'
+  const stickerUrl = sticker ? sticker.stickerUrl : '/assets/icons/bookmark.png'
 
   return {
     title: `${sticker ? `Cel mai bun sticker pe tema: ${sticker.name}` : 'Sticker deleted or not found'}`,
