@@ -1,5 +1,6 @@
 import { getSticker } from '@/lib/actions/sticker.actions'
 import type { Metadata, ResolvingMetadata } from 'next'
+import SharedStickerPage from '@/components/shared/SharedStickerPage'
 
 type Props = {
   params: {id: string}
@@ -14,8 +15,10 @@ export async function generateMetadata(
  
   const sticker = await getSticker(id)
 
+  const stickerUrl = sticker ? sticker.stickerUrl : '/assets/illustrations/not-found.svg'
+
   return {
-    title: `Cel mai bun sticker pe tema: ${sticker.name}`,
+    title: `${sticker ? `Cel mai bun sticker pe tema: ${sticker.name}` : 'Sticker deleted or not found'}`,
     openGraph: {
       images: [sticker.stickerUrl],
     },
@@ -25,9 +28,7 @@ export async function generateMetadata(
 export default async function Page({ params }: Props) {
   const id = params.id
  
-  const sticker = await getSticker(id)
-
   return (
-    <img src={sticker.stickerUrl} alt="alt"/>
+    <SharedStickerPage />
   )
 }

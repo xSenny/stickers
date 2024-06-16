@@ -42,7 +42,7 @@ export type StickerPaginationParams = {
 
 export type Sticker = {
   uploader: {
-    _id: string,
+    id: string,
     username: string,
   },
   _id: string,

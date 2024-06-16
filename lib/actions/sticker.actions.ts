@@ -36,6 +36,15 @@ export const deleteSticker = async (stickerId: string) => {
   }
 }
 
+export const updateSticker = async (stickerId: string, name: string) => {
+  try {
+    await connectToDatabase()
+    const updatedSticker = await Sticker.findByIdAndUpdate(stickerId, {name})
+  } catch (e) {
+    console.log('Error updating a sticker')
+    console.log(e)
+  }
+}
 
 export const getAllStickers = async ({query, page, category, userId}: GetAllStickersParams) => {
   const limit = 18
@@ -131,7 +140,7 @@ export const getSticker = async (id: string) => {
 
     const sticker = await Sticker.findById(id)
 
-    if (!sticker) throw new Error('Sticker not found')
+    if (!sticker) return null
     
     return sticker
   } catch (e) {
