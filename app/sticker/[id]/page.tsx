@@ -20,7 +20,7 @@ export async function generateMetadata(
   return {
     title: `${sticker ? `Cel mai bun sticker pe tema: ${sticker.name}` : 'Sticker deleted or not found'}`,
     openGraph: {
-      images: [sticker.stickerUrl],
+      images: [stickerUrl],
     },
   }
 }
