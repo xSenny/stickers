@@ -74,3 +74,16 @@
       @apply bg-background text-foreground;
     }
   }
+
+@media (min-width: 1100px) {
+    .image {
+        content: url('/assets/illustrations/landing.svg'); /* Replace with your large image path */
+    }
+}
+
+@media (max-width: 1100px) {
+    .image {
+        content: url('/assets/illustrations/landing-small.svg'); /* Replace with your small image path */
+        width: 40%;
+    }
+}

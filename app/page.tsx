@@ -1,5 +1,6 @@
 import Filter from '@/components/shared/Filter'
 import InputAndSavedButton from '@/components/shared/InputAndSavedButton'
+import Landing from '@/components/shared/Landing'
 import StickerPagination from '@/components/shared/Pagination'
 import StickerCollection from '@/components/shared/StickerCollection'
 import { getAllStickers } from '@/lib/actions/sticker.actions'
@@ -34,13 +35,16 @@ const page = async ({searchParams}: SearchParamProps) => {
 
 
   return (
-    <div className="flex flex-col gap-10 mt-10">
-      <InputAndSavedButton />
-      <div className="w-full flex justify-end pr-52">
-        <Filter />
+    <div className="">
+      <Landing />
+      <div className='flex flex-col gap-10 mt-10'>
+        <InputAndSavedButton />
+        <div className="w-full flex justify-center md:justify-end md:pr-52">
+          <Filter />
+        </div>
+        <StickerCollection stickers={stickers?.data}/>
+        <StickerPagination currentPage={page} maxPage={maxPages}/>
       </div>
-      <StickerCollection stickers={stickers?.data}/>
-      <StickerPagination currentPage={page} maxPage={maxPages}/>
     </div>
   )
 }
