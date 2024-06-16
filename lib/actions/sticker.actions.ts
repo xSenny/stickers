@@ -42,7 +42,7 @@ export const getAllStickers = async ({query, page, category, userId}: GetAllStic
   try {
     await connectToDatabase()
 
-    const titleConditions = query ? {title: {$regex: query, $options: 'i'}} : {}
+    const titleConditions = query ? {name: {$regex: query, $options: 'i'}} : {}
 
     if (category === 'uploaded') {
       const skipAmount = (Number(page) - 1) * limit
