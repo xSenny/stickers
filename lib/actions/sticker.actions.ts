@@ -46,6 +46,28 @@ export const updateSticker = async (stickerId: string, name: string) => {
   }
 }
 
+export const getAllStickersForDashboard = async() => {
+  try {
+    await connectToDatabase()
+    const stickers = await Sticker.find()
+    return stickers;
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+export const getTableStickers = async () => {
+  try {
+    await connectToDatabase()
+    const query = Sticker.find()
+    const stickers = await populateSticker(query)
+
+    return stickers;
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 export const getAllStickers = async ({query, page, category, userId}: GetAllStickersParams) => {
   const limit = 18
   try {

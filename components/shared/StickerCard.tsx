@@ -1,13 +1,15 @@
 'use client'
 import CardMenu from '@/components/shared/CardMenu'
 import { useToast } from "@/components/ui/use-toast"
-import {deleteSticker} from "@/lib/actions/sticker.actions"
+import {deleteSticker, updateSticker} from "@/lib/actions/sticker.actions"
 import {useRouter} from 'next/navigation'
+import {useState} from 'react'
 
 const StickerCard = ({name, id, imageUrl, uploader, hasAccess}: {name: string, id: string, imageUrl: string; uploader: string, hasAccess: Boolean}) => {
   
   const { toast } = useToast()
   const router = useRouter()
+
 
   const shareImage = () => {
     navigator.clipboard.writeText(imageUrl)
@@ -28,14 +30,26 @@ const StickerCard = ({name, id, imageUrl, uploader, hasAccess}: {name: string, i
   const handleDeleteSticker = async () => {
     try {
       await deleteSticker(id)
-      router.push('/', {scroll: false})
+      router.refresh()
+      toast({
+        title: "Your sticker was deleted successfully"
+      })
     } catch (e) {
       console.log (e)
     }
   }
 
-  const updateSticker = (name: string) => {
-
+  const handleUpdateSticker = async (name: string) => {
+    try {
+      await updateSticker(id, name)
+      router.refresh()
+      toast({
+        title: "Your sticker's name was successfully changed",
+        description: "Its new name is " + name
+      })
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   return (
@@ -48,7 +62,7 @@ const StickerCard = ({name, id, imageUrl, uploader, hasAccess}: {name: string, i
           <p className="text-center">{name}</p>
           <p className="text-start">Uploaded by {uploader}</p>
         </div>
-        <CardMenu name={name} hasAccess={hasAccess} handleImageShare={shareImage} handleEmbedShare={shareEmbed} handleDeleteSticker={handleDeleteSticker} handleEditSticker={updateSticker}/>
+        <CardMenu name={name} hasAccess={hasAccess} handleImageShare={shareImage} handleEmbedShare={shareEmbed} handleDeleteSticker={handleDeleteSticker} handleEditSticker={handleUpdateSticker}/>
       </div>
       
     </div>

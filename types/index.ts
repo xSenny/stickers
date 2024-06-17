@@ -45,6 +45,7 @@ export type Sticker = {
     id: string,
     username: string,
   },
+  id: string,
   _id: string,
   stickerUrl: string,
   createdAt: string,
