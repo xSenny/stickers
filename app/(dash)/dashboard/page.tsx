@@ -12,12 +12,12 @@ const Dashboard = async ({searchParams}: SearchParamProps) => {
   const userId = sessionClaims?.userId as string;
   console.log(userId)
 
-  function createDailyCountArray(data) {
+  function createDailyCountArray(data: any) {
     const currentDate = new Date(); // Current date
     const startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1); // Start of current month
     const endDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0); // End of current month
   
-    const dailyCounts = {};
+    const dailyCounts: any = {};
   
     // Initialize dailyCounts with 0 counts for each day in the month
     for (let date = new Date(startDate); date <= endDate; date.setDate(date.getDate() + 1)) {
@@ -26,7 +26,7 @@ const Dashboard = async ({searchParams}: SearchParamProps) => {
     }
   
     // Count occurrences of each date in the dataset
-    data.forEach(item => {
+    data.forEach((item: any) => {
       // Parse createdAt string to Date object
       const createdAtDate = new Date(item.createdAt);
   

@@ -27,7 +27,7 @@ import {useState, useEffect} from 'react'
 
 const StickersTable = ({stickersString}: {stickersString: string}) => {
   const searchParams = useSearchParams() 
-  const [stickers, setStickers] = useState<Sticker>([])
+  const [stickers, setStickers] = useState<Sticker[]>([])
   useEffect(() => {
     setStickers(JSON.parse(stickersString))
   }, [stickersString])

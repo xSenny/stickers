@@ -10,7 +10,7 @@ import {Button} from '@/components/ui/button'
 
 const StickerData = ({selectedSticker, stickers, userId}: {selectedSticker: string; stickers: Sticker[]; userId: string}) => {
 
-  let sticker: Sticker | undefined = undefined
+  let sticker: any = undefined
 
   stickers.forEach(s => {
     if (s.id === selectedSticker) sticker = s 
